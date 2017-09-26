@@ -47,7 +47,7 @@ function updateAlbum (req, res) {
 
   Album.findByIdAndUpdate(albumID, update, (err, data) => {
     // Manejo del error
-    if (err) { res.status(500).send({ message: 'Error al actualizar el marcador' }) }
+    if (err) { res.status(500).send({ message: 'Error al actualizar album' }) }
 
     // Exitoso la actualizacion
     res.status(200).send({ UpdateAlbum: data })
@@ -55,7 +55,22 @@ function updateAlbum (req, res) {
 }
 
 function deleteAlbum (req, res) {
+  let albumID = req.params.id
 
+  Album.findByIdAndRemove(albumID, (err, data) => {
+    // Manejo del error
+    if (err) { res.status(500).send({ message: 'Error al borrar album' }) }
+
+    if (!data) { res.status(404).send({ message: 'No existen datos con ese ID' }) }
+    // Exitoso la actualizacion
+    data.remove(err => {
+      if (err) {
+        res.status(500).send({ message: 'El album no se ha eliminado' })
+      } else {
+        res.status(200).send({ message: 'El album se ha eliminado' })
+      }
+    })
+  })
 }
 
 module.exports = {
