@@ -1,7 +1,7 @@
 'use strict'
 
 const express = require('express')
-// controlador de album
+// controlador de image
 const ImageController = require('../controllers/image.controller')
 // router de express
 const api = express.Router()
