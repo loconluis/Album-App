@@ -41,8 +41,27 @@ function saveAlbum (req, res) {
   })
 }
 
+function updateAlbum (req, res) {
+  let albumID = req.params.id
+  let update = req.body
+
+  Album.findByIdAndUpdate(albumID, update, (err, data) => {
+    // Manejo del error
+    if (err) { res.status(500).send({ message: 'Error al actualizar el marcador' }) }
+
+    // Exitoso la actualizacion
+    res.status(200).send({ UpdateAlbum: data })
+  })
+}
+
+function deleteAlbum (req, res) {
+
+}
+
 module.exports = {
   getAlbum,
   getAlbums,
-  saveAlbum
+  saveAlbum,
+  updateAlbum,
+  deleteAlbum
 }

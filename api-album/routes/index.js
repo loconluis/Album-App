@@ -10,7 +10,7 @@ const api = express.Router()
 api.get('/album/:id', AlbumController.getAlbum)
 api.get('/albums', AlbumController.getAlbums)
 api.post('/album', AlbumController.saveAlbum)
-// api.put('/favorito/:id', FavoritoController.updateFavorite)
-// api.delete('/favorito/:id', FavoritoController.deleteFavorite)
+api.put('/album/:id', AlbumController.updateAlbum)
+api.delete('/album/:id', AlbumController.deleteAlbum)
 
 module.exports = api
