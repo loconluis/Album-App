@@ -1,5 +1,5 @@
 'use strict'
-
+// Model de album
 const Album = require('../models/album.model')
 
 function getAlbum (req, res) {
@@ -26,7 +26,23 @@ function getAlbums (req, res) {
   })
 }
 
+function saveAlbum (req, res) {
+  let album = new Album()
+  let params = req.body
+
+  album.title = params.title
+  album.description = params.description
+
+  album.save((err, data) => {
+    if (err || !data) return res.status(500).send({ message: 'Error al guardar' + err })
+
+    // Guardado exitoso
+    res.status(200).send({ album: data })
+  })
+}
+
 module.exports = {
   getAlbum,
-  getAlbums
+  getAlbums,
+  saveAlbum
 }
