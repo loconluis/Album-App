@@ -24,13 +24,27 @@ function getImage (req, res) {
 }
 
 function getImages (req, res) {
-  Image.find({}, (err, images) => {
-    // Manejo del error
+  let albumID = req.params.album
+  let find
+
+  if (!albumID) {
+    // sacar todas las imagenes
+    find = Image.find({}).sort('-title')
+  } else {
+    find = Image.find({ album: albumID }).sort('-title')
+  }
+
+  find.exec((err, images) => {
+      // Manejo del error
     if (err) { return res.status(500).send({ message: 'Error en el servidor ' + err }) }
-    // Si no existe el dato
+      // Si no existe el dato
     if (!images) { return res.status(404).send({ message: 'No hay datos en la colección' }) }
-    // respuesta exitosa
-    res.status(200).send({ images })
+      // respuesta exitosa
+    Album.populate(images, { path: 'album' }, (err, data) => {
+      if (err) { return res.status(500).send({ message: 'Error en la peticion ' + err }) }
+        // devuelve un objeto ya con los datos anidados
+      res.status(200).send({ images: data })
+    })
   })
 }
 
