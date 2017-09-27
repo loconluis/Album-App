@@ -118,11 +118,17 @@ function uploadImage (req, res) {
   }
 }
 
+function getImageFile (req, res) {
+  let imageFile = req.params.imageFile
+  res.sendFile(path.resolve(`./uploads/${imageFile}`))
+}
+
 module.exports = {
   getImage,
   getImages,
   saveImage,
   updateImage,
   deleteImage,
-  uploadImage
+  uploadImage,
+  getImageFile
 }
