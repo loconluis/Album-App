@@ -1,10 +1,8 @@
 'use strict'
+
+const path = require('path')
 const Image = require('../models/image.model')
 const Album = require('../models/album.model')
-
-// function sup (req, res) {
-//   return res.status(200).send({message: 'WAZAAAP'})
-// }
 
 function getImage (req, res) {
   let imageID = req.params.id
@@ -97,10 +95,33 @@ function deleteImage (req, res) {
   })
 }
 
+function uploadImage (req, res) {
+  // conservamos el id de la imagen
+  let imageID = req.params.id
+  let fileName = 'No subido...'
+
+  if (req.files) {
+    let filePath = req.files.image.path
+    let fileSplit = filePath.split('/')
+    fileName = fileSplit[1]
+
+    Image.findByIdAndUpdate(imageID, {picture: fileName}, (err, data) => {
+      if (err) { return res.status(500).send({message: 'Error en la peticion ' + err}) }
+
+      if (!data) { return res.status(404).send({message: 'No hay datos que actualizar'}) }
+
+      res.status(200).send({ imageUpdate: data })
+    })
+  } else {
+    return res.status(200).send({ message: 'No se ha subido ningun imagen' })
+  }
+}
+
 module.exports = {
   getImage,
   getImages,
   saveImage,
   updateImage,
-  deleteImage
+  deleteImage,
+  uploadImage
 }
