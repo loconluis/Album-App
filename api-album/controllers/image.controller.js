@@ -29,9 +29,9 @@ function getImages (req, res) {
 
   if (!albumID) {
     // sacar todas las imagenes
-    find = Image.find({}).sort('-title')
+    find = Image.find({}).sort('title')
   } else {
-    find = Image.find({ album: albumID }).sort('-title')
+    find = Image.find({ album: albumID }).sort('title')
   }
 
   find.exec((err, images) => {
@@ -65,8 +65,22 @@ function saveImage (req, res) {
   })
 }
 
+function updateImage (req, res) {
+  let imageID = req.params.id
+  let update = req.body
+
+  Image.findByIdAndUpdate(imageID, update, (err, data) => {
+    if (err) { return res.status(500).send({message: 'Error en la peticion ' + err}) }
+
+    if (!data) { return res.status(404).send({message: 'No hay datos que actualizar'}) }
+
+    res.status(200).send({ imageUpdate: data })
+  })
+}
+
 module.exports = {
   getImage,
   getImages,
-  saveImage
+  saveImage,
+  updateImage
 }

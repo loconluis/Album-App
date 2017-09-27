@@ -11,7 +11,7 @@ const api = express.Router()
 api.get('/image/:id', ImageController.getImage)
 api.get('/images/:album?', ImageController.getImages)
 api.post('/image', ImageController.saveImage)
-// api.put('/album/:id', ImageController.updateAlbum)
+api.put('/image/:id', ImageController.updateImage)
 // api.delete('/album/:id', ImageController.deleteAlbum)
 
 module.exports = api
