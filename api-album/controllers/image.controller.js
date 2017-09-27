@@ -78,9 +78,29 @@ function updateImage (req, res) {
   })
 }
 
+function deleteImage (req, res) {
+  let imageID = req.params.id
+
+  Image.findByIdAndRemove(imageID, (err, data) => {
+    // Manejo del error
+    if (err) { res.status(500).send({ message: 'Error al borrar imagen' }) }
+
+    if (!data) { res.status(404).send({ message: 'No existen datos con ese ID' }) }
+        // Exitoso la actualizacion
+    data.remove(err => {
+      if (err) {
+        res.status(500).send({ message: 'La imagen no se ha eliminado' })
+      } else {
+        res.status(200).send({ message: 'La imagen se ha eliminado' })
+      }
+    })
+  })
+}
+
 module.exports = {
   getImage,
   getImages,
   saveImage,
-  updateImage
+  updateImage,
+  deleteImage
 }
