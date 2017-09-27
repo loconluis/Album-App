@@ -1,6 +1,7 @@
 'use strict'
 
 const path = require('path')
+const fs = require('fs')
 const Image = require('../models/image.model')
 const Album = require('../models/album.model')
 
@@ -120,7 +121,13 @@ function uploadImage (req, res) {
 
 function getImageFile (req, res) {
   let imageFile = req.params.imageFile
-  res.sendFile(path.resolve(`./uploads/${imageFile}`))
+  fs.access(`./uploads/${imageFile}`, (err) => {
+    if (!err) {
+      return res.sendFile(path.resolve(`./uploads/${imageFile}`))
+    } else {
+      return res.status(200).send({message: 'No existe la imagen'})
+    }
+  })
 }
 
 module.exports = {
