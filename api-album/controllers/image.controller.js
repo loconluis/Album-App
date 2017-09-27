@@ -99,12 +99,13 @@ function uploadImage (req, res) {
   // conservamos el id de la imagen
   let imageID = req.params.id
   let fileName = 'No subido...'
-
+  // Si existen files en la peticion, para eso usamos un middleware en la ruta
   if (req.files) {
     let filePath = req.files.image.path
     let fileSplit = filePath.split('/')
     fileName = fileSplit[1]
 
+    // actualizamos el dato
     Image.findByIdAndUpdate(imageID, {picture: fileName}, (err, data) => {
       if (err) { return res.status(500).send({message: 'Error en la peticion ' + err}) }
 
