@@ -2,6 +2,10 @@
   {{ titulo }}
 </h1>
 
+<div class="loading" *ngIf="loading">
+    <img src="/assets/img/loader.gif" alt="loading-spin">
+  </div>
+
 <div class="container">
   <ul id="albums-list">
     <li *ngFor="let album of albums" class="album-item">

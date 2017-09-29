@@ -13,6 +13,7 @@ export class AlbumsListComponent implements OnInit {
   titulo: string;
   albums: Album[];
   errorMessage: any;
+  loading: boolean;
 
 
   constructor(
@@ -27,15 +28,19 @@ export class AlbumsListComponent implements OnInit {
   }
 
   getAlbums () {
+    // esta cargando
+    this.loading = true;
+    // ajax request
     this.albumService.getAlbums()
       .subscribe(result => {
         // console.log(result.albums);
         this.albums = result.albums;
         if (!this.albums) {
-          alert('Error en el servidor');
-        } else {
-          //
+         return alert('Error en el servidor');
         }
+
+        this.loading = false;
+        
       }, err => {
         this.errorMessage = <any>err;
         if (this.errorMessage != null) {
