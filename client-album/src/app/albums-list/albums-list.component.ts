@@ -40,7 +40,6 @@ export class AlbumsListComponent implements OnInit {
         }
 
         this.loading = false;
-        
       }, err => {
         this.errorMessage = <any>err;
         if (this.errorMessage != null) {
