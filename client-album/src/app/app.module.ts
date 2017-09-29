@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { appRoutingProviders, routing } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { AlbumsListComponent } from './albums-list/albums-list.component';
+import { AlbumService } from './services/album.service';
 
 @NgModule({
   declarations: [
@@ -12,10 +14,12 @@ import { AlbumsListComponent } from './albums-list/albums-list.component';
   ],
   imports: [
     BrowserModule,
-    routing
+    routing,
+    HttpModule
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    AlbumService
   ],
   bootstrap: [AppComponent]
 })

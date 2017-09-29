@@ -1,3 +1,28 @@
 <h1>
   {{ titulo }}
 </h1>
+
+<div class="container">
+  <ul id="albums-list">
+    <li *ngFor="let album of albums" class="album-item">
+      <div class="data">
+        <h4>{{ album.title }}</h4>
+        <p class="buttons">
+          <a href="#" target="_blank" class="btn btn-default">
+            Ver album
+          </a>
+          <!-- usando routerLink para movernos entre los componentes -->
+          <a class="btn btn-ver">
+            Añadir Foto
+          </a>
+          <a class="btn btn-editar">
+            Editar
+          </a>
+          <a class="btn btn-eliminar">
+            Eliminar
+          </a>
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
