@@ -20,6 +20,13 @@ export class AlbumService {
       .map(res => res.json());
   }
 
+
+  getAlbum (id: string) {
+    // obtiene el resultado
+    return this.http.get(this.url + 'album/' + id)
+      .map(res => res.json());
+  }
+
   saveAlbum(album: Album) {
     const json = JSON.stringify(album);
     const params = json;
