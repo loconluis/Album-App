@@ -12,7 +12,7 @@
       <div class="data">
         <h4>{{ album.title }}</h4>
         <p class="buttons">
-          <a href="#" target="_blank" class="btn btn-default">
+          <a [routerLink]="['/album', album._id]" class="btn btn-default">
             Ver album
           </a>
           <!-- usando routerLink para movernos entre los componentes -->

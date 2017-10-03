@@ -18,6 +18,8 @@ export class AlbumDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log('en el detalle de componentes');
+    this.getAlbum();
   }
 
   getAlbum() {
@@ -27,9 +29,9 @@ export class AlbumDetailComponent implements OnInit {
       // inyectamos el servicio
       this.albumService.getAlbum(id)
         .subscribe(response => {
-          // console.log(response.fav);
+          // console.log(response);
           this.album = response.album;
-          // si no existe el favorito regresa al HOME
+          // si no existe el album regresa al HOME
           if (!this.album) {
             this.router.navigate(['/']);
           }
