@@ -32,7 +32,16 @@ export class AlbumService {
     const params = json;
     const headers = new Headers({'Content-Type' : 'application/json'});
 
-    return this.http.post(this.url + '/album', params, { headers: headers })
+    return this.http.post(this.url + 'album', params, { headers: headers })
+      .map(res => res.json());
+  }
+
+  editAlbum(id: string, album: Album) {
+    const json = JSON.stringify(album);
+    const params = json;
+    const headers = new Headers({'Content-Type' : 'application/json'});
+
+    return this.http.put(this.url + 'album/' + id, params, { headers: headers })
       .map(res => res.json());
   }
 

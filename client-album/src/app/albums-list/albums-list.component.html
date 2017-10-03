@@ -19,7 +19,7 @@
           <a class="btn btn-ver">
             Añadir Foto
           </a>
-          <a class="btn btn-editar">
+          <a [routerLink]="['/album/editar', album._id]" class="btn btn-editar">
             Editar
           </a>
           <a class="btn btn-eliminar">

@@ -4,11 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { AlbumsListComponent } from './albums-list/albums-list.component';
 import { AlbumAddComponent } from './album-add/album-add.component';
 import { AlbumDetailComponent } from './album-detail/album-detail.component';
+import { AlbumEditComponent } from './album-edit/album-edit.component';
 
 const routes: Routes = [
   { path: '', component: AlbumsListComponent },
   { path: 'nuevo-album', component: AlbumAddComponent },
   { path: 'album/:id', component: AlbumDetailComponent },
+  { path: 'album/editar/:id', component: AlbumEditComponent },
   { path: '**', component: AlbumsListComponent }
 
 ];

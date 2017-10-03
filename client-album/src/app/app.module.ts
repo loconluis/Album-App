@@ -9,13 +9,15 @@ import { AlbumsListComponent } from './albums-list/albums-list.component';
 import { AlbumService } from './services/album.service';
 import { AlbumAddComponent } from './album-add/album-add.component';
 import { AlbumDetailComponent } from './album-detail/album-detail.component';
+import { AlbumEditComponent } from './album-edit/album-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumsListComponent,
     AlbumAddComponent,
-    AlbumDetailComponent
+    AlbumDetailComponent,
+    AlbumEditComponent
   ],
   imports: [
     BrowserModule,
