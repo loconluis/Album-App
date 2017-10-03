@@ -14,6 +14,7 @@ export class AlbumsListComponent implements OnInit {
   albums: Album[];
   errorMessage: any;
   loading: boolean;
+  flagToDelete: any;
 
 
   constructor(
@@ -47,6 +48,32 @@ export class AlbumsListComponent implements OnInit {
           console.log('err', err);
         }
       });
+  }
+
+  onDeleteConfirm(id) {
+    this.flagToDelete = id;
+  }
+
+  onCancelConfirm(id) {
+   this.flagToDelete = null;
+  }
+
+  onDeleteAlbum(id) {
+    this.albumService.deleteAlbum(id)
+     .subscribe(response => {
+       if (!response.message) {
+         alert('Error en la peticion');
+       }
+       this.getAlbums();
+
+     }, err => {
+       // error
+       this.errorMessage = <any>err;
+       if (this.errorMessage != null) {
+         console.log(this.errorMessage);
+         alert('Error en la peticion');
+       }
+     });
   }
 
 }

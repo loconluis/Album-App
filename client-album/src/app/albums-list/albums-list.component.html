@@ -22,10 +22,20 @@
           <a [routerLink]="['/album/editar', album._id]" class="btn btn-editar">
             Editar
           </a>
-          <a class="btn btn-eliminar">
+          <a class="btn btn-eliminar" (click)="onDeleteConfirm(album._id)">
             Eliminar
           </a>
         </p>
+        <div class="sure" *ngIf="flagToDelete == album._id">
+          <p><span><strong>¿Estas seguro de querer borrar el album?</strong></span></p>
+          <a (click)="onDeleteAlbum(album._id)" class="btn btn-eliminar">
+            Eliminar
+          </a>
+          <a (click)="onCancelConfirm(album._id)" class="btn btn-ver">
+            Cancelar
+          </a>
+        </div>
+
       </div>
     </li>
   </ul>
