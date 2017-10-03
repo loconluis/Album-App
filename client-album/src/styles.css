@@ -82,11 +82,12 @@ header #logo {
 .album-item {
   list-style: none;
   float: left;
-  width: 31%;
+  width: 95%;
   border: 1px solid #ddd;
   height: 120px;
   padding-top: 20px;
   padding-bottom: 20px;
+  padding-left: 20px;
   color: gray;
   background: white;
   margin: 10px;
@@ -157,6 +158,11 @@ header #logo {
   margin-top: 20px;
 }
 
+/* main */
+.main {
+  padding: 20px;
+
+}
 /*loader*/
 .loading {
   margin: 25px;
@@ -165,9 +171,9 @@ header #logo {
 /* sure */
 .sure {
   position: absolute;
-  margin-top: -95px;
+  margin-top: -90px;
   background: white;
-  width: 275px;
+  width: 300px;
   color: gray;
   text-align: center;
 }
