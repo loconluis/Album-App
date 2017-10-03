@@ -10,6 +10,8 @@ import { AlbumService } from './services/album.service';
 import { AlbumAddComponent } from './album-add/album-add.component';
 import { AlbumDetailComponent } from './album-detail/album-detail.component';
 import { AlbumEditComponent } from './album-edit/album-edit.component';
+import { ImageAddComponent } from './image-add/image-add.component';
+import { ImageService } from './services/image.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { AlbumEditComponent } from './album-edit/album-edit.component';
     AlbumsListComponent,
     AlbumAddComponent,
     AlbumDetailComponent,
-    AlbumEditComponent
+    AlbumEditComponent,
+    ImageAddComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { AlbumEditComponent } from './album-edit/album-edit.component';
   ],
   providers: [
     appRoutingProviders,
-    AlbumService
+    AlbumService,
+    ImageService
   ],
   bootstrap: [AppComponent]
 })

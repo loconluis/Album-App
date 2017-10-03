@@ -16,7 +16,7 @@
             Ver album
           </a>
           <!-- usando routerLink para movernos entre los componentes -->
-          <a class="btn btn-ver">
+          <a [routerLink]="['/nueva-imagen', album._id]" class="btn btn-ver">
             Añadir Foto
           </a>
           <a [routerLink]="['/album/editar', album._id]" class="btn btn-editar">

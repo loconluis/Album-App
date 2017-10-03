@@ -35,7 +35,7 @@ export class AlbumAddComponent implements OnInit {
           alert('Error en el servidor');
         } else {
           this.album = result.album;
-          this.router.navigate(['/'])
+          this.router.navigate(['/']);
         }
       }, err => {
          // error

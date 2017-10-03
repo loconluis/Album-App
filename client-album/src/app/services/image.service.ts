@@ -17,4 +17,14 @@ export class ImageService {
     this.url = GLOBAL.url;
   }
 
+  saveImage(image: Image) {
+    // guardar imagen
+    const json = JSON.stringify(image);
+    const params = json;
+    const headers = new Headers({'Content-Type' : 'application/json'});
+
+    return this.http.post(this.url + 'image', params, { headers: headers })
+      .map(res => res.json());
+  }
+
 }
