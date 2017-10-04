@@ -38,7 +38,7 @@ export class ImageAddComponent implements OnInit {
             alert('Error en el servidor');
           } else {
             this.image = result.image;
-            // this.router.navigate(['/album'], id);
+            this.router.navigate(['/imagen/editar/', result.image._id]);
           }
         }, err => {
            // error

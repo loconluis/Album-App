@@ -56,7 +56,7 @@ function saveImage (req, res) {
   image.album = params.album
 
   image.save((err, data) => {
-    console.log(data)
+    // console.log(data)
     if (err || !data) return res.status(500).send({ message: 'Error al guardar' + err })
 
     // Guardado exitoso
