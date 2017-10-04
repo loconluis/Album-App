@@ -12,7 +12,7 @@
   <div *ngIf="is_edit">
     <label for="fileupload">Busca la foto: </label>
     <p>
-      <input type="file" placeholder="Subir imagen">
+      <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)">
     </p>
   </div>
   <input type="submit" value="{{titulo}}" [disabled]="!formImage.form.valid">

@@ -13,6 +13,8 @@ export class ImageEditComponent implements OnInit {
   image: Image;
   errorMessage: any;
   is_edit: boolean;
+  filesToUpload: Array<File>;
+  resultUpload;
 
   constructor(
     private imageService: ImageService,
@@ -64,6 +66,13 @@ export class ImageEditComponent implements OnInit {
           } else {
             this.image = result.imageUpdate;
             // subir imagen en esta parte
+            this.makeFileRequest(this.imageService.getUrl() + 'upload-image/' + id , [], this.filesToUpload)
+              .then(resolve => {
+                this.resultUpload = resolve;
+                this.image = this.resultUpload;
+              },
+              reject => { console.log(reject); }
+            );
             this.router.navigate(['/album/', this.image.album]);
           }
         }, err => {
@@ -74,6 +83,34 @@ export class ImageEditComponent implements OnInit {
              alert('Error en la peticion');
            }
         });
+    });
+  }
+
+  fileChangeEvent(fileInput: any) {
+    // evento para escuchar el evento que cambia el input a change
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+  }
+
+  makeFileRequest(url: string, params: Array<string>, files: Array<File>) {
+    return new Promise((resolve, reject) => {
+      const formData: any = new FormData();
+      const xhr = new XMLHttpRequest();
+
+      for (let i = 0; i < files.length; i++) {
+        formData.append('image', files[i], files[i].name);
+      }
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            resolve(JSON.parse(xhr.response));
+          } else {
+            reject(xhr.response);
+          }
+        }
+      };
+      xhr.open('POST', url, true);
+      xhr.send(formData);
     });
   }
 

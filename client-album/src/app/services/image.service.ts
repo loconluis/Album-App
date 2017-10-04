@@ -55,6 +55,10 @@ export class ImageService {
   deleteImage(id: string) {
     return this.http.delete(this.url + 'image/' + id)
       .map(res => res.json());
-    }
   }
+
+  getUrl() {
+    return this.url;
+  }
+}
 
