@@ -50,4 +50,31 @@ export class ImageEditComponent implements OnInit {
     });
   }
 
+  onSubmit() {
+    this.route.params.forEach((params: Params) => {
+      // aqui hace una comparacion de los parametros
+      const id = params['id'];
+
+      this.imageService.editImage(id, this.image)
+        .subscribe(result => {
+          // success
+          console.log(result);
+          if (!result.imageUpdate) {
+            alert('Error en el servidor');
+          } else {
+            this.image = result.imageUpdate;
+            // subir imagen en esta parte
+            this.router.navigate(['/album/', this.image.album]);
+          }
+        }, err => {
+           // error
+           this.errorMessage = <any>err;
+           if (this.errorMessage != null) {
+             console.log(this.errorMessage);
+             alert('Error en la peticion');
+           }
+        });
+    });
+  }
+
 }
