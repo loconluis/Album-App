@@ -50,4 +50,8 @@ export class AlbumService {
     .map(res => res.json());
   }
 
+  getUploadApi() {
+    return this.url + 'get-image/';
+  }
+
 }

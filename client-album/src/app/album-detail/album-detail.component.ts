@@ -13,6 +13,7 @@ export class AlbumDetailComponent implements OnInit {
   album: Album;
   images: Array<Image>;
   errorMessage: any;
+  uploadApi: string;
 
   constructor(
     private albumService: AlbumService,
@@ -24,6 +25,8 @@ export class AlbumDetailComponent implements OnInit {
   ngOnInit() {
     console.log('en el detalle de componentes');
     this.getAlbum();
+    this.uploadApi = this.albumService.getUploadApi();
+    console.log(this.uploadApi);
   }
 
   getAlbum() {

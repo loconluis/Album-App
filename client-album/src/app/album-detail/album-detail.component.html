@@ -1,4 +1,23 @@
 <div class="album-box" *ngIf="album">
-  <h1>{{ album.title }}</h1>
-  <p class="url"> {{ album.description }} </p>
+  <div class="data-rest">
+    <h1>{{ album.title }}</h1>
+    <p class="url"> {{ album.description }} </p>
+
+    <a [routerLink]="['/nueva-imagen/', album._id]" class="btn btn-default">
+      Añadir fotos
+    </a>
+
+    <div id="gallery-images" *ngIf="images">
+      <ul id="pictures-list">
+        <li *ngFor="let image of images" class="image-item">
+          <div class="picture">
+            <img src="{{uploadApi + image.picture}}" alt="upload-file" *ngIf="image.picture != null">
+          </div>
+          <div class="title-picture">
+            <a [routerLink]="['/imagen/', image_id]">{{ image.title }}</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </div>

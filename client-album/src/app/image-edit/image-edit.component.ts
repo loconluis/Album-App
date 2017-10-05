@@ -65,15 +65,15 @@ export class ImageEditComponent implements OnInit {
             alert('Error en el servidor');
           } else {
             this.image = result.imageUpdate;
-            // subir imagen en esta parte
+            // subir imagen en esta parte es una promesa
             this.makeFileRequest(this.imageService.getUrl() + 'upload-image/' + id , [], this.filesToUpload)
               .then(resolve => {
                 this.resultUpload = resolve;
                 this.image = this.resultUpload;
+                this.router.navigate(['/album/', this.image.album]);
               },
               reject => { console.log(reject); }
             );
-            this.router.navigate(['/album/', this.image.album]);
           }
         }, err => {
            // error
