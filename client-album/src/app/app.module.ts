@@ -13,6 +13,7 @@ import { AlbumEditComponent } from './album-edit/album-edit.component';
 import { ImageAddComponent } from './image-add/image-add.component';
 import { ImageService } from './services/image.service';
 import { ImageEditComponent } from './image-edit/image-edit.component';
+import { ImageDetailComponent } from './image-detail/image-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ImageEditComponent } from './image-edit/image-edit.component';
     AlbumDetailComponent,
     AlbumEditComponent,
     ImageAddComponent,
-    ImageEditComponent
+    ImageEditComponent,
+    ImageDetailComponent
   ],
   imports: [
     BrowserModule,

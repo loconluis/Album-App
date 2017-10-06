@@ -1,0 +1,10 @@
+
+<div *ngIf="image" class="image-box">
+  <a [routerLink]="['/album', image.album._id]" class="btn btn-ver">Volver al album</a>
+  <a [routerLink]="['/imagen/editar', image._id]" class="btn btn-editar">Editar Imagen</a>
+  <a [routerLink]="['/album', image.album._id]" class="btn btn-ver">Volver al album</a>
+  <h1>
+    {{ image.title }}
+  </h1>
+  <img src="{{uploadApi + image.picture}}" alt="image.title" class="imagen">
+</div>

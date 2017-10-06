@@ -14,7 +14,7 @@
             <img src="{{uploadApi + image.picture}}" alt="upload-file" *ngIf="image.picture != null">
           </div>
           <div class="title-picture">
-            <a [routerLink]="['/imagen/', image_id]">{{ image.title }}</a>
+            <a [routerLink]="['/imagen/', image._id]">{{ image.title }}</a>
           </div>
         </li>
       </ul>

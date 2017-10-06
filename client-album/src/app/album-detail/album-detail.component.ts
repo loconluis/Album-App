@@ -26,7 +26,7 @@ export class AlbumDetailComponent implements OnInit {
     console.log('en el detalle de componentes');
     this.getAlbum();
     this.uploadApi = this.albumService.getUploadApi();
-    console.log(this.uploadApi);
+    // console.log(this.uploadApi);
   }
 
   getAlbum() {
