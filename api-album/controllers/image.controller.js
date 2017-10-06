@@ -90,7 +90,7 @@ function deleteImage (req, res) {
       if (err) {
         res.status(500).send({ message: 'La imagen no se ha eliminado' })
       } else {
-        res.status(200).send({ message: 'La imagen se ha eliminado' })
+        res.status(200).send({ messageConfirm: 'La imagen se ha eliminado' })
       }
     })
   })

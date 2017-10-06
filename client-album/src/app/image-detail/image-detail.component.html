@@ -2,9 +2,19 @@
 <div *ngIf="image" class="image-box">
   <a [routerLink]="['/album', image.album._id]" class="btn btn-ver">Volver al album</a>
   <a [routerLink]="['/imagen/editar', image._id]" class="btn btn-editar">Editar Imagen</a>
-  <a [routerLink]="['/album', image.album._id]" class="btn btn-ver">Volver al album</a>
+  <a class="btn btn-eliminar" (click)="onDeleteConfirm(image._id)">Eliminar Imagen</a>
   <h1>
     {{ image.title }}
   </h1>
   <img src="{{uploadApi + image.picture}}" alt="image.title" class="imagen">
+
+  <div class="sure" *ngIf="flagToDelete == image._id">
+    <p><span><strong>¿Estas seguro de querer borrar la imagen?</strong></span></p>
+    <a (click)="onDeleteImage(image._id, image.album._id)" class="btn btn-eliminar">
+      Eliminar
+    </a>
+    <a (click)="onCancelConfirm(image._id)" class="btn btn-ver">
+      Cancelar
+    </a>
+  </div>
 </div>

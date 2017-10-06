@@ -9,6 +9,8 @@ import { Image } from '../models/image.model';
   templateUrl: './image-detail.component.html'
 })
 export class ImageDetailComponent implements OnInit {
+  auxAlbum: any;
+  flagToDelete: any;
   image: Image;
   errorMessage: any;
   uploadApi: string;
@@ -49,6 +51,38 @@ export class ImageDetailComponent implements OnInit {
           }
         });
     });
+  }
+
+  onDeleteConfirm(id) {
+    this.flagToDelete = id;
+  }
+
+  onCancelConfirm(id) {
+   this.flagToDelete = null;
+  }
+
+  onDeleteImage(id, albumID) {
+    this.auxAlbum = albumID;
+    this.imageService.deleteImage(id)
+     .subscribe(response => {
+       if (!response.messageConfirm) {
+         alert('Error en la peticion');
+       }
+       this.router.navigate(['/album', this.auxAlbum]);
+
+     }, err => {
+       // error
+       this.errorMessage = <any>err;
+       if (this.errorMessage != null) {
+         console.log(this.errorMessage);
+         alert('Error en la peticion');
+       }
+     });
+  }
+
+  hi() {
+    alert('Hola' + this.image );
+    console.log(this.image);
   }
 
 }
