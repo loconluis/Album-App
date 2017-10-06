@@ -69,8 +69,8 @@ export class ImageEditComponent implements OnInit {
             this.makeFileRequest(this.imageService.getUrl() + 'upload-image/' + id , [], this.filesToUpload)
               .then(resolve => {
                 this.resultUpload = resolve;
-                this.image = this.resultUpload;
-                this.router.navigate(['/album/', this.image.album]);
+                this.image = this.resultUpload.imageUpdate;
+                this.router.navigate(['/album', this.image.album]);
               },
               reject => { console.log(reject); }
             );
